@@ -14,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 ?>
 
-<?php if ( $price_html = $product->get_price_html() ) : ?>
-	<span class="price"><?php echo $price_html; ?></span>
-<?php endif; ?>
+	<div class="col-xs-12">
+		<?php if ( $price_html = $product->get_price_html() ) : ?>
+			<span class="price price-wc"><?php echo $price_html; ?></span>
+		<?php endif; ?>
+	</div>
+</div>

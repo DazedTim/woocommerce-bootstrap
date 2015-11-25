@@ -19,17 +19,42 @@ if ( $wp_query->max_num_pages <= 1 ) {
 ?>
 <nav class="woocommerce-pagination">
 	<?php
-		echo paginate_links( apply_filters( 'woocommerce_pagination_args', array(
+		// echo paginate_links( apply_filters( 'woocommerce_pagination_args', array(
+		// 	'base'         => esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
+		// 	'format'       => '',
+		// 	'add_args'     => '',
+		// 	'current'      => max( 1, get_query_var( 'paged' ) ),
+		// 	'total'        => $wp_query->max_num_pages,
+		// 	'prev_text'    => '&larr;',
+		// 	'next_text'    => '&rarr;',
+		// 	'type'         => 'list',
+		// 	'end_size'     => 3,
+		// 	'mid_size'     => 3
+		// ) ) ); ?>
+<?php
+		## My shit
+
+		$args = array(
 			'base'         => esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) ),
 			'format'       => '',
 			'add_args'     => '',
 			'current'      => max( 1, get_query_var( 'paged' ) ),
 			'total'        => $wp_query->max_num_pages,
-			'prev_text'    => '&larr;',
-			'next_text'    => '&rarr;',
-			'type'         => 'list',
+			'prev_text'    => '<',
+			'next_text'    => '>',
+			'type'         => 'array',
 			'end_size'     => 3,
 			'mid_size'     => 3
-		) ) );
-	?>
+		); ?>
+
+		<?php $pagination_links = paginate_links( apply_filters( 'woocommerce_pagination_args', $args)); ?>
+
+		<ul class="pagination">
+		<?php
+		foreach( $pagination_links as $pagination_link ){
+			printf('<li>%s</li>', $pagination_link);
+		}
+		?>
+		</ul>	
+	
 </nav>

@@ -34,3 +34,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 	?>
 </form>
+</div>
+<div class="col-xs-12">
